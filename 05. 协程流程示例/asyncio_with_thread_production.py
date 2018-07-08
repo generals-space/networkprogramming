@@ -22,6 +22,10 @@ async def waitTask(session, order):
 async def closeSession(session):
     return await session.close()
 
+def callback(future):
+    print('calling callback...')
+    print(future.result())
+
 def main():
     loop = asyncio.get_event_loop()
     loopThread = threading.Thread(target = keep_loop, args = (loop, ))
@@ -33,6 +37,8 @@ def main():
     for i in range(0, 10):
         coroutine = waitTask(aioSession, i)
         _concurrentFuture = asyncio.run_coroutine_threadsafe(coroutine, loop)
+        ## 添加协程回调函数的方式
+        _concurrentFuture.add_done_callback(callback)
     ## join()方法等待目标线程结束, 没有返回值, 只会阻塞
     ## 在timeout时间内如果线程没有结束, join()方法仍然会结束阻塞, 让主线程继续执行(子线程依然会存在)
     loopThread.join(timeout = 40)
