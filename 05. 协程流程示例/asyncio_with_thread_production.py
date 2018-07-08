@@ -51,6 +51,8 @@ def main():
     ## 注意stop与close的调用方式
     print(loop)
     loop.call_soon_threadsafe(loop.stop)
+    ## 这里可能有必要, 在协程并没有完全执行完成时关闭事件循环, 会需要一点时间
+    time.sleep(5)
     print(loop)
     loop.close()
     print(loop)
