@@ -11,3 +11,21 @@ python是同步语言, 许多原生方法也是按同步方式写的. 异步协�
 本章`05. 协程流程示例`中, 使用了一个`http://note.generals.space/aio`接口, 对于一个请求, 它会随机沉睡`1-30`秒再返回, 返回的内容是一个json字符串, 结构为`{delay: 沉睡的秒数}`, 示例中用这个接口来学习协程的使用方法.
 
 正如我上面所说, `await urllib.urlopen(url)`没有任何意义, 所以这些示例都将使用`aiohttp`库提供的异步函数.
+
+## 线程 & 协程
+
+参考文章
+
+1. [asyncio - how to stop loop?](https://mail.python.org/pipermail/python-list/2014-June/673627.html)
+
+2. [asyncio - how to stop loop?](https://mail.python.org/pipermail/python-list/2014-June/673646.html)
+
+3. [asyncio - how to stop loop?](https://mail.python.org/pipermail/python-list/2014-June/673682.html)
+
+相关示例
+
+- asyncio_with_thread_demo.py
+
+- asyncio_with_thread_production.py
+
+`demo`展示了在子线程中运行协程基本流程, 但是无法正常关闭, 包括aiohttp的ClientSession和asyncio的loop. `production`修复了这个问题. 其中最重要的`loop.call_soon_threadsafe(loop.stop)`是根据参考文章1, 2, 3的python邮件列表.

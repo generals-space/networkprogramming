@@ -23,6 +23,9 @@ async def main(loop):
     ## 超时的task被放在pending列表里
     for i in pending:
         print(i)
+        ## task的执行状态只有4种, pending, running, done, cancelled
+        ## 不过await过的task, 就只有done和cancelled两种.
+        ## 这两种都不是, 那应该就是超时了.
         print('done ? ', i.done())          ## False
         print('cancelled ? ', i.cancelled())## False
         print(type(i))
