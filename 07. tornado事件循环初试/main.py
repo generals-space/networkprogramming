@@ -24,7 +24,9 @@ async def customer():
         _url = await q.get()
         ## html = await fetch_url(url)
         global loop
-        loop.spawn_callback(fetch_url, url)
+        
+        ## loop.spawn_callback(fetch_url, url)
+        loop.add_callback(fetch_url, url)
     print('customer complete...')
 
 async def producer():
