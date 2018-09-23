@@ -1,3 +1,4 @@
 *.o
 *.pyc
 *.vscode
+.DS_Store
