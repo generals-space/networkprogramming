@@ -7,6 +7,9 @@ const net = require('net');
 var server = net.createServer();
 server.on('connection', (socket) => {
     console.log('client connected');
+    // socket 为客户端接入后创建的对象
+    console.log('服务地址: ', socket.address()); // 输出服务监听的地址
+    console.log('客户端地址: ', socket.remoteAddress + ':' + socket.remotePort) // 客户端地址
     socket.on('data', (data) => {
         if(data.toString() === 'exit') socket.destroy();
         console.log('receive from client: ', data.toString());
