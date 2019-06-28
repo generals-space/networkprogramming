@@ -91,7 +91,7 @@ general@localhost ~]$ cat /proc/sys/net/ipv4/tcp_max_syn_backlog
 ```
 [root@localhost ~]# sysctl -a | grep tcp_max_syn
 net.ipv4.tcp_max_syn_backlog = 128
-net.ipv4.tcp_max_syn_backlog = 2
+[root@localhost ~]# sysctl -w net.ipv4.tcp_max_syn_backlog=2
 [root@localhost ~]# sysctl -a | grep tcp_max_syn
 sysctl: net.ipv4.tcp_max_syn_backlog = 2
 ```
